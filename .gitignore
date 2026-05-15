@@ -1,0 +1,19 @@
+# created by virtualenv automatically
+.venv/Lib
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE
+.idea/
+
+# env
+.env
+
+# arquivos pessoais
+ideias.txt
+testes111.py
