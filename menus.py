@@ -1,4 +1,6 @@
 from rich import print
+from time import sleep
+import os
 
 def menu_principal():
     print(30 * '[cyan]«[/]')
@@ -20,3 +22,28 @@ def menu_level3():
           '1 - ATAQUE BÁSICO\n'
           '2 - HABILIDADE 1\n'
           '3 - HABILIDADE 2')
+
+def logo():
+
+    for i in range(20, -1, -1):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        print('\n' * i)
+        print(r'''
+        ╔════════════════════════════════════════════════════╗
+        ║                                                    ║
+        ║      ⚔️  GAUCHO'S ADVENTURES ⚔️                   ║
+        ║                                                    ║
+        ║     Peleia • Chimarrão • Pilcha • Garrucha         ║
+        ║                                                    ║
+        ╚════════════════════════════════════════════════════╝
+        ''')
+
+        sleep(0.1)
+
+def carregamento():
+    print('[green]Carregando[/]',end='')
+    for c in range(5):
+        sleep(1)
+        print('.',end='')
+    print('')

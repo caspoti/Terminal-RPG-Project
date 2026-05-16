@@ -5,12 +5,14 @@ from levels import *
 from time import sleep
 
 def main():
+    logo()
+    sleep(2)
+    iniciar = str(input('Pressione qualquer tecla para iniciar...'))
+    limpar_tela(1)
     player = criar_personagem()
     sleep(2)
     print('[yellow]PREPARA-SE, A BATALHA IRÁ COMEÇAR![/]')
-    for c in range(5,0,-1):
-        print(f'[cyan]{c} [/]',end='')
-        sleep(1)
+    carregamento()
     limpar_tela()
     level_1(player) #--- o jogo vai rodar dentro do level 1, onde vai criar o personagem cpu = BESTACAUDA()
     # level_2(player) #--- o jogo vai rodar dentro do level 2, onde vai criar o personagem cpu = CAO()

@@ -23,7 +23,7 @@ def painel_level1(player,cpu): # informacoes dos personagens
                   'Habilidades: N/A[/]', title=f'{cpu.nome}', style='red', width=30)
     player = Panel(f'[yellow]Força: {player.forca} atk\nVida: {player.vida} HP\n'
                   'Habilidades: N/A[/]', title=f'{player.nome}({player.__class__.__name__})', style='red', width=30)
-    print(inimigo,player)
+    print(inimigo,'[cyan]VS[/]'.center(40),player)
 
 def level_1(player):
     # Aqui ira acontecer a batalha contra o primeiro boss
