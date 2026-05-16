@@ -1,7 +1,7 @@
-
 from personagens import *
 from rich import print
-
+from time import sleep
+import os
 
 wizard = Mago()
 warrior = Guerreiro()
@@ -80,20 +80,43 @@ def criar_personagem():
         p1 = Arqueiro(name)
     return p1
 
-def ataque():
-    pass
+def ataque(player,cpu):
+    atk = player.atacar(player.forca)
+    if atk is not None:
+        print(60 * '[green]-[/]')
+        print(f'{player.nome} acertou {cpu.nome} com {player.habilidade[0]} de {atk:.0f} força')
+        sleep(1)
+        print(cpu.receber_dano(atk))
+        print(60 * '[green]-[/]')
+        sleep(1)
+    else:
+        print(50 * '[red]-[/]')
+        print(f'{player.nome} errou o ataque!')
+        print(50 * '[red]-[/]')
+        sleep(1)
 
-def curar_vida():
-    pass
+def curar_vida(player):
+    cura = player.curar()
+    if cura is not None:
+        print(50 * '[blue]-[/]')
+        print(f'{player.nome} curou {cura} HP')
+        print(50 * '[blue]-[/]')
+        return 1 # PARA PASSAR A RODADA
+    else:
+        print(50 * '[red]-[/]')
+        print('Você já está com o máximo de vida!')
+        print(50 * '[red]-[/]')
+        return 0 # NÃO PASSAR A RODADA, POIS A CURA NAO FOI USADA
 
 
 def pensar():
     #Mecanica dos inimigos, atacar ou se curar, criar regra!
     pass
 
-def passar_cena():
-    # Printa espaço vazio (100x) quebrando as linhas, dando um efeito de 'passagem de cena'.
-    print(100*' \n')
+def limpar_tela(tempo = 0):
+    # limpa o terminal
+    sleep(tempo)
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def habilidades(habil):
     #countdown de cada habilidade

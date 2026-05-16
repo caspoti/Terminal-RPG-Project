@@ -2,9 +2,16 @@ from personagens import *
 from rich import print, inspect
 from mecanicas import *
 from levels import *
+from time import sleep
 
 def main():
     player = criar_personagem()
+    sleep(2)
+    print('[yellow]PREPARA-SE, A BATALHA IRÁ COMEÇAR![/]')
+    for c in range(5,0,-1):
+        print(f'[cyan]{c} [/]',end='')
+        sleep(1)
+    limpar_tela()
     level_1(player) #--- o jogo vai rodar dentro do level 1, onde vai criar o personagem cpu = BESTACAUDA()
     # level_2(player) #--- o jogo vai rodar dentro do level 2, onde vai criar o personagem cpu = CAO()
     # level_3(player) #--- o jogo vai rodar dentro do level 3, onde vai criar o personagem cpu = CAPIVARA MONSTRO()

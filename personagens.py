@@ -1,9 +1,31 @@
 from abc import ABC, abstractmethod
 from random import randint
-from time import sleep
 
 
+def rolar_dados(lados):
+    import time
+    import os
 
+    # animação do dado
+    for i in range(15):
+        numero = randint(1, lados)
+
+        # limpa o terminal
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        print(f"🎲 Rolando o dado...\n")
+        print(f"[ {numero} ]")
+
+        time.sleep(0.1)
+
+    # resultado final
+    resultado = randint(1, lados)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    print("🎲 Resultado final:")
+    print(f"[ {resultado} ]")
+    return resultado
 
 class Personagem(ABC):
     def __init__(self,nome,forca,vida, elo,hab_1= 0,hab_2= 0):
@@ -16,7 +38,7 @@ class Personagem(ABC):
 
     @staticmethod
     def atacar(dano):
-        rolar_d10 =randint(1,10)
+        rolar_d10 = rolar_dados(10)
         if rolar_d10 <= 2:
             return None
         else:
@@ -47,14 +69,14 @@ class Mago(Personagem):
     def curar(self):
     # Para curar, é jogado um dado d8
         if self.vida == 1100:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1,8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura*rolar_d8)/8
             self.vida+= cura_efetiva #adiciona a cura
             self.vida = min(self.vida, 1100)  # Não deixa passar de 1100 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva
 
     def habilidade_1(self, cpu, rodada):
         roubo_vida = self.atacar(self.forca) * 0.2
@@ -72,14 +94,14 @@ class Guerreiro(Personagem):
     def curar(self):
         # Para curar, é jogado um dado d8
         if self.vida == 1000:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1, 8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura * rolar_d8) / 8
             self.vida += cura_efetiva #adiciona a cura
             self.vida = min(self.vida, 1000) # Não deixa passar de 1000 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva
 
 class Arqueiro(Personagem):
     def __init__(self,nome='Player 1',forca=230,vida=900,elo=1,hab_1= 0,hab_2= 0):
@@ -89,14 +111,14 @@ class Arqueiro(Personagem):
     def curar(self):
         # Para curar, é jogado um dado d8
         if self.vida == 900:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1, 8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura * rolar_d8) / 8
             self.vida += cura_efetiva  # adiciona a cura
             self.vida = min(self.vida, 900)  # Não deixa passar de 900 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva
 
 # INIMIGOS
 
@@ -108,14 +130,14 @@ class BestaCauda(Personagem):
     def curar(self):
         # Para curar, é jogado um dado d8
         if self.vida == 1000:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1, 8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura * rolar_d8) / 8
             self.vida += cura_efetiva  # adiciona a cura
             self.vida = min(self.vida, 1000)  # Não deixa passar de 900 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva
 
 class CAO(Personagem):
     def __init__(self,nome='Cão de 3 Cabeças',forca=250,vida=1500,elo=2):
@@ -134,14 +156,14 @@ class CAO(Personagem):
     def curar(self):
         # Para curar, é jogado um dado d8
         if self.vida == 1500:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1, 8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura * rolar_d8) / 8
             self.vida += cura_efetiva  # adiciona a cura
             self.vida = min(self.vida, 1500)  # Não deixa passar de 900 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva
 
 
 class Capirava(Personagem):
@@ -162,11 +184,11 @@ class Capirava(Personagem):
     def curar(self):
         # Para curar, é jogado um dado d8
         if self.vida == 1500:
-            return 'A vida está no maximo, não é necessário curar!'
+            return None
         else:
             cura = 100
-            rolar_d8 = randint(1, 8)
+            rolar_d8 = rolar_dados(8)
             cura_efetiva = (cura * rolar_d8) / 8
             self.vida += cura_efetiva  # adiciona a cura
             self.vida = min(self.vida, 1500)  # Não deixa passar de 900 de vida
-            return f'{self.nome} recuperou {cura_efetiva:.0f} HP, HP = {self.vida:.0f}'
+            return cura_efetiva

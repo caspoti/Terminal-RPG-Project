@@ -33,37 +33,23 @@ def level_1(player):
     while True:
         if rodada % 2 == 0:
             sleep(2)
+            print(f'[cyan]============[/][blue] Rodada: {rodada} [/][cyan]============[/]')
             painel_level1(player,cpu)
             sleep(1)
             menu_principal() # 1- ataque,2- curar
             escolha = int(input('Digite o número: '))
-            if escolha == 1:
-                atk = player.atacar(player.forca)
-                if atk is not None:
-                    print(60 * '[green]-[/]')
-                    print(f'{player.nome} acertou {cpu.nome} com {player.habilidade[0]} de {atk:.0f} força')
-                    sleep(1)
-                    print(cpu.receber_dano(atk))
-                    print(60 * '[green]-[/]')
-                    sleep(1)
-                    print(player.nome, player.vida, player.forca)
-                    print(cpu.vida)
-                    vivo = cpu.conferir_vida()
-                    if vivo is not True:
-                        break
-                else:
-                    print(50 * '[red]-[/]')
-                    print(f'{player.nome} errou o ataque!')
-                    print(50 * '[red]-[/]')
-                    sleep(1)
-            elif escolha == 2:
-                cura = player.curar
-                print(cura)
-
+            if escolha == 1: # OPCAO DE ATAQUE DO PLAYER
+                ataque(player,cpu)
+                vivo = cpu.conferir_vida()
+                if vivo is not True:
+                    break
+                rodada += 1
+            elif escolha == 2: # OPCAO DE CURA DO PLAYER
+                limpar_tela(1)
+                rodada += curar_vida(player)
             #mecanica do player
             # se jogador acerta o ataque - ataques += 1
             # se errar o ataque - ataque = 0
-            rodada += 1
         else:
             rodada += 1
             #mecanica do CPU
